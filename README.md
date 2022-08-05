@@ -1,4 +1,11 @@
-### aws eks deploy by terraform
+### 1. aws eks deploy by terraform
+
+#### 아키텍쳐
+
+* terraform에서 예제로 제공되는 기본 architecture 로 구성
+<img src="images/eks-architecture.jpg" align="center" />
+
+* terraform 으로 구성
 ```
 # terrform 설치
 terraform init
@@ -10,7 +17,7 @@ terraform apply
 ```
 
 
-### SpringBoot 어플리케이션 컨네이너 이미지 만들기
+### 2. SpringBoot 어플리케이션 컨네이너 이미지 만들기
 
 * springboot 소스 빌드
 ```text

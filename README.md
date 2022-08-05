@@ -3,16 +3,47 @@
 #### 아키텍쳐
 
 * terraform에서 예제로 제공되는 기본 architecture 로 구성
-<img src="images/eks-architecture.jpg" align="center" />
+<img src="./terraform/images/eks-architecture.jpg" align="center" />
 
-* terraform 으로 구성
+
+#### eks 설치
+* ap-northeast-2 리전에 설치하며 t3.small 사양으로 1개 노드만 구성
 ```
-# terrform 설치
+varriables.tf
+variable "region" {
+  description = "AWS region"
+  type        = string
+  default     = "ap-northeast-2"
+}
+```
+```
+eks-cluster.tf
+  eks_managed_node_groups = {
+    one = {
+      name = "node-group-1"
+
+      instance_types = ["t3.small"]
+
+      min_size     = 1
+      max_size     = 1
+      desired_size = 1
+```
+
+```
+# terrform 초기세팅
 terraform init
+
 # terrform 수행 Plan
 terraform plan
+
 # terrform 수행 
 terraform apply
+
+# terrform 상태
+terrform show
+
+# terrform 삭제
+terrform destroy
 
 ```
 
@@ -21,7 +52,7 @@ terraform apply
 
 * springboot 소스 빌드
 ```text
-# springboot pom.xml경로에서 maven 빌드
+# springboot pom.xml 경로에서 maven 빌드
 mvnw package
 ```
 * Dockerfile
@@ -39,7 +70,7 @@ USER root
 RUN mkdir -p /logs
 
 # maven
-#ARG JAR_FILE=target/demo-0.0.1-SNAPSHOT.jar
+ARG JAR_FILE=target/demo-0.0.1-SNAPSHOT.jar
 
 COPY ${JAR_FILE} /app.jar
 

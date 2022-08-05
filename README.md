@@ -1,3 +1,15 @@
+### aws eks deploy by terraform
+```
+# terrform 설치
+terraform init
+# terrform 수행 Plan
+terraform plan
+# terrform 수행 
+terraform apply
+
+```
+
+
 ### SpringBoot 어플리케이션 컨네이너 이미지 만들기
 
 * springboot 소스 빌드
@@ -79,3 +91,8 @@ curl 10.65.41.81:31236
 hostname : springboot-demo-6b9fc99f58-7vlfr!, os : Linux!
 
 ```
+
+
+## Reference 참고 링크
+* [https://learn.hashicorp.com](https://learn.hashicorp.com/tutorials/terraform/eks)
+

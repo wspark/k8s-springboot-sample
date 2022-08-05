@@ -133,4 +133,4 @@ hostname : springboot-demo-6b9fc99f58-7vlfr!, os : Linux!
 
 ## Reference 참고 링크
 * [https://learn.hashicorp.com](https://learn.hashicorp.com/tutorials/terraform/eks)
-
+* [github 주소](https://github.com/wspark/k8s-springboot-sample )

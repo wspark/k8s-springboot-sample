@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata: 
+  name: "tekton-pv"
+spec: 
+  accessModes: 
+  - ReadWriteMany
+  capacity: 
+    storage: 10Gi
+  nfs:
+    path: /data/nfs/monitoring/tekton
+    server: 10.65.41.80
+  persistentVolumeReclaimPolicy: Retain

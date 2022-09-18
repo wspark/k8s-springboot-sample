@@ -1,0 +1,68 @@
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: tekton-pipeline-gradle-demo
+spec:
+  tasks:
+    - name: git-clone
+      params:
+        - name: url
+          value: 'https://github.com/wspark/k8s-springboot-cicd'
+      taskRef:
+        kind: Task
+        name: git-clone
+      workspaces:
+        - name: output
+          workspace: pipeline-shared-data
+    - name: gradle
+      params:
+        - name: PROJECT_DIR
+          value: "springboot-sample"
+      runAfter:
+        - git-clone
+      taskRef:
+        kind: Task
+        name: gradle
+      workspaces:
+        - name: source
+          workspace: pipeline-shared-data
+    - name: buildah
+      params:
+        - name: IMAGE
+          value: docker.io/wspark83/springboot:demo-v1.5
+        - name: STORAGE_DRIVER
+          value: overlay
+        - name: DOCKERFILE
+          value: ./Dockerfile
+        - name: CONTEXT
+          value: springboot-sample
+        - name: TLSVERIFY
+          value: 'false'
+        - name: FORMAT
+          value: oci
+        - name: SKIP_PUSH
+          value: 'false'
+      runAfter:
+        - gradle
+      taskRef:
+        kind: Task
+        name: buildah
+      workspaces:
+        - name: source
+          workspace: pipeline-shared-data
+        - name: sslcertdir
+          workspace: pipeline-shared-data
+    - name: kubenetes-deploy
+      params:
+        - name: script
+          value: "kubectl set image deployment/springboot-demo springboot=docker.io/wspark83/springboot:demo-v1.5 -n wspark"
+      runAfter:
+        - buildah
+      taskRef:
+        kind: Task
+        name: kubernetes-actions
+      workspaces:
+        - name: kubeconfig-dir
+          workspace:  pipeline-shared-data
+  workspaces:
+    - name: pipeline-shared-data

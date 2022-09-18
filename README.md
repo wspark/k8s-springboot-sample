@@ -370,9 +370,9 @@ kubectl create -f clusterrolebinding.yaml -n tekton-pipelines
 
 ## Reference 참고 링크
 * [https://learn.hashicorp.com](https://learn.hashicorp.com/tutorials/terraform/eks)
-* [github 주소](https://github.com/wspark/k8s-springboot-sample )
-* [tekton install](https://tekton.dev/docs/pipelines/install/)
-* [tekton task hub](https://hub.tekton.dev/) 
-* [tekton run issue](https://github.com/tektoncd/pipeline/issues/2236)
+* [github https://github.com/wspark/k8s-springboot-sample )](https://github.com/wspark/k8s-springboot-sample )
+* [tekton install https://tekton.dev/docs/pipelines/install ](https://tekton.dev/docs/pipelines/install/)
+* [tekton task hub https://hub.tekton.dev/](https://hub.tekton.dev/) 
+* [tekton run issue https://github.com/tektoncd/pipeline/issues/2236](https://github.com/tektoncd/pipeline/issues/2236)
 
 
